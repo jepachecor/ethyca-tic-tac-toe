@@ -4,7 +4,7 @@ from app.api.db.database import Base
 from datetime import datetime
 
 class Move(Base):
-    __tablenema__ = 'move'
+    __tablename__ = 'move'
 
     id = Column(Integer, primary_key=True, index=True)
     x = Column(Integer)
