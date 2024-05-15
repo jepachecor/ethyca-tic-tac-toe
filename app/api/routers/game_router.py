@@ -11,3 +11,10 @@ router = APIRouter()
 async def create_game(game: game_schema.GameIn, db: Session = Depends(get_db)):
 
     return crud.create_game(db=db, game=game)
+
+@router.get('/game/{game_id}/moves')
+async def list_moves(game_id: int, db: Session = Depends(get_db)):
+    moves_by_game = crud.get_moves_by_game(db=db, game_id=game_id)
+    if not moves_by_game:
+        raise HTTPException(status_code=400, detail='No moves on this game')
+    return moves_by_game
